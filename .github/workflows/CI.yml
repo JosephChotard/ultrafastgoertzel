@@ -26,16 +26,10 @@ jobs:
         platform:
           - runner: ubuntu-22.04
             target: x86_64
-          - runner: ubuntu-22.04
-            target: x86
+          # x86 removed - pulp crate requires 64-bit
           - runner: ubuntu-22.04
             target: aarch64
-          - runner: ubuntu-22.04
-            target: armv7
-          - runner: ubuntu-22.04
-            target: s390x
-          - runner: ubuntu-22.04
-            target: ppc64le
+          # armv7, s390x, ppc64le removed - pulp SIMD not supported on these architectures
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -45,16 +39,10 @@ jobs:
         uses: PyO3/maturin-action@v1
         with:
           target: ${{ matrix.platform.target }}
-          args: --release --out dist --manifest-path bindings/python/Cargo.toml
+          args: --release --out dist --manifest-path bindings/python/Cargo.toml --interpreter 3.8 3.9 3.10 3.11 3.12 3.13
           sccache: ${{ !startsWith(github.ref, 'refs/tags/') }}
           manylinux: auto
-      - name: Build free-threaded wheels
-        uses: PyO3/maturin-action@v1
-        with:
-          target: ${{ matrix.platform.target }}
-          args: --release --out dist --manifest-path bindings/python/Cargo.toml -i python3.13t
-          sccache: ${{ !startsWith(github.ref, 'refs/tags/') }}
-          manylinux: auto
+      # Free-threaded Python 3.13t removed - numpy crate doesn't support nogil yet
       - name: Upload wheels
         uses: actions/upload-artifact@v4
         with:
@@ -93,12 +81,10 @@ jobs:
         platform:
           - runner: ubuntu-22.04
             target: x86_64
-          - runner: ubuntu-22.04
-            target: x86
+          # x86 removed - pulp crate requires 64-bit
           - runner: ubuntu-22.04
             target: aarch64
-          - runner: ubuntu-22.04
-            target: armv7
+          # armv7 removed - pulp SIMD not supported
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -108,16 +94,10 @@ jobs:
         uses: PyO3/maturin-action@v1
         with:
           target: ${{ matrix.platform.target }}
-          args: --release --out dist --manifest-path bindings/python/Cargo.toml
+          args: --release --out dist --manifest-path bindings/python/Cargo.toml --interpreter 3.8 3.9 3.10 3.11 3.12 3.13
           sccache: ${{ !startsWith(github.ref, 'refs/tags/') }}
           manylinux: musllinux_1_2
-      - name: Build free-threaded wheels
-        uses: PyO3/maturin-action@v1
-        with:
-          target: ${{ matrix.platform.target }}
-          args: --release --out dist --manifest-path bindings/python/Cargo.toml -i python3.13t
-          sccache: ${{ !startsWith(github.ref, 'refs/tags/') }}
-          manylinux: musllinux_1_2
+      # Free-threaded Python 3.13t removed - numpy crate doesn't support nogil yet
       - name: Upload wheels
         uses: actions/upload-artifact@v4
         with:
@@ -161,8 +141,7 @@ jobs:
         platform:
           - runner: windows-latest
             target: x64
-          - runner: windows-latest
-            target: x86
+          # x86 removed - pulp crate requires 64-bit
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -173,18 +152,9 @@ jobs:
         uses: PyO3/maturin-action@v1
         with:
           target: ${{ matrix.platform.target }}
-          args: --release --out dist --manifest-path bindings/python/Cargo.toml
+          args: --release --out dist --manifest-path bindings/python/Cargo.toml --interpreter 3.8 3.9 3.10 3.11 3.12 3.13
           sccache: ${{ !startsWith(github.ref, 'refs/tags/') }}
-      - uses: actions/setup-python@v5
-        with:
-          python-version: 3.13t
-          architecture: ${{ matrix.platform.target }}
-      - name: Build free-threaded wheels
-        uses: PyO3/maturin-action@v1
-        with:
-          target: ${{ matrix.platform.target }}
-          args: --release --out dist --manifest-path bindings/python/Cargo.toml -i python3.13t
-          sccache: ${{ !startsWith(github.ref, 'refs/tags/') }}
+      # Free-threaded Python 3.13t removed - numpy crate doesn't support nogil yet
       - name: Upload wheels
         uses: actions/upload-artifact@v4
         with:
@@ -219,14 +189,9 @@ jobs:
         uses: PyO3/maturin-action@v1
         with:
           target: ${{ matrix.platform.target }}
-          args: --release --out dist --manifest-path bindings/python/Cargo.toml
+          args: --release --out dist --manifest-path bindings/python/Cargo.toml --interpreter 3.8 3.9 3.10 3.11 3.12 3.13
           sccache: ${{ !startsWith(github.ref, 'refs/tags/') }}
-      - name: Build free-threaded wheels
-        uses: PyO3/maturin-action@v1
-        with:
-          target: ${{ matrix.platform.target }}
-          args: --release --out dist --manifest-path bindings/python/Cargo.toml -i python3.13t
-          sccache: ${{ !startsWith(github.ref, 'refs/tags/') }}
+      # Free-threaded Python 3.13t removed - numpy crate doesn't support nogil yet
       - name: Upload wheels
         uses: actions/upload-artifact@v4
         with:
