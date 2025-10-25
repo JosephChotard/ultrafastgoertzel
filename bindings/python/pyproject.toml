@@ -1,0 +1,58 @@
+[build-system]
+requires = ["maturin>=1.5,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "ultrafastgoertzel"
+requires-python = ">=3.8"
+authors = [
+    {name = 'Joseph Chotard', email = 'joseph@chotard.com'},
+]
+classifiers = [
+    "Programming Language :: Rust",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+keywords = ["goertzel", "rust", "pyo3", "signal-processing", "fft", "dsp"]
+dynamic = [
+    "version",
+    "description",
+    "license",
+    "readme",]
+dependencies = ["numpy>=1.20",]
+
+[project.urls]
+Homepage = 'https://github.com/JosephChotard'
+Source = 'https://github.com/JosephChotard'
+
+[project.optional-dependencies]
+test = ["pytest>=7.0"]
+lint = ["black", "ruff~=0.11.2"]
+
+
+[tool.maturin]
+features = ["pyo3/extension-module"]
+python-source = "python"
+module-name = "ultrafastgoertzel._ultrafastgoertzel"
+#bindings = 'pyo3'
+
+[tool.black]
+line-length = 119
+target-version = "py38"
+
+[tool.ruff]
+line-length = 119
+target-version = "py38"
+lint.ignore = [
+]

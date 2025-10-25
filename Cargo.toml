@@ -1,0 +1,17 @@
+[workspace]
+members = [
+    "crates/*", "bindings/*"
+]
+resolver = "3"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+authors = ["Joseph Chotard <joseph@chotard.com>"]
+description = "A fast goertzel calculator Rust"
+license = "WTFPL"
+
+
+[profile.release]
+lto = true
+codegen-units = 1
