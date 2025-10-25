@@ -77,6 +77,7 @@ pub fn goertzel_batch_with_simd<'a, S: Simd>(
         .map(|v| v.sqrt() / normalizer)
         .collect()
 }
+
 #[cfg(test)]
 mod tests {
     use super::*;
