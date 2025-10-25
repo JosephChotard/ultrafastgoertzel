@@ -150,16 +150,16 @@ fn goertzel_batch<'py>(
 /// components in a signal without computing a full FFT.
 ///
 /// Functions:
-///     goertzel: Compute magnitude for a single frequency (accepts lists or NumPy arrays)
-///     goertzel_batch: Compute magnitudes for multiple frequencies (accepts lists or NumPy arrays, recommended)
+/// - goertzel: Compute magnitude for a single frequency (accepts lists or NumPy arrays)
+/// - goertzel_batch: Compute magnitudes for multiple frequencies (accepts lists or NumPy arrays, recommended)
 ///
 /// Note:
-///     Frequencies are normalized, where 0.5 represents the Nyquist frequency
-///     (half the sampling rate). For example, if your sampling rate is 1000 Hz,
-///     a normalized frequency of 0.1 corresponds to 100 Hz.
+/// Frequencies are normalized, where 0.5 represents the Nyquist frequency
+/// (half the sampling rate). For example, if your sampling rate is 1000 Hz,
+/// a normalized frequency of 0.1 corresponds to 100 Hz.
 ///
-///     Both functions automatically detect NumPy arrays and release Python's GIL
-///     for true multi-threaded parallelism when processing them.
+/// Both functions automatically detect NumPy arrays and release the Python GIL
+/// for true multi-threaded parallelism when processing them.
 #[pymodule]
 fn _ultrafastgoertzel(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(goertzel, m)?)?;
