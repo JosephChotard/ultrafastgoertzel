@@ -9,5 +9,5 @@ publish = false
 
 [dependencies]
 ultrafastgoertzel = { path = "../../crates/ultrafastgoertzel" }
-pyo3 = { version = "0.23.5", features = ["extension-module", "abi3-py38"] }
+pyo3 = { version = "0.23.5", features = ["extension-module", "abi3-py39"] }
 numpy = "0.23"

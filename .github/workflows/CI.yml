@@ -39,7 +39,7 @@ jobs:
         uses: PyO3/maturin-action@v1
         with:
           target: ${{ matrix.platform.target }}
-          args: --release --out dist --manifest-path bindings/python/Cargo.toml --interpreter 3.8 3.9 3.10 3.11 3.12 3.13
+          args: --release --out dist --manifest-path bindings/python/Cargo.toml --interpreter 3.9 3.10 3.11 3.12 3.13
           sccache: ${{ !startsWith(github.ref, 'refs/tags/') }}
           manylinux: auto
       # Free-threaded Python 3.13t removed - numpy crate doesn't support nogil yet
@@ -95,7 +95,7 @@ jobs:
         uses: PyO3/maturin-action@v1
         with:
           target: ${{ matrix.platform.target }}
-          args: --release --out dist --manifest-path bindings/python/Cargo.toml --interpreter 3.8 3.9 3.10 3.11 3.12 3.13
+          args: --release --out dist --manifest-path bindings/python/Cargo.toml --interpreter 3.9 3.10 3.11 3.12 3.13
           sccache: ${{ !startsWith(github.ref, 'refs/tags/') }}
           manylinux: musllinux_1_2
       # Free-threaded Python 3.13t removed - numpy crate doesn't support nogil yet
@@ -153,7 +153,7 @@ jobs:
         uses: PyO3/maturin-action@v1
         with:
           target: ${{ matrix.platform.target }}
-          args: --release --out dist --manifest-path bindings/python/Cargo.toml --interpreter 3.8 3.9 3.10 3.11 3.12 3.13
+          args: --release --out dist --manifest-path bindings/python/Cargo.toml --interpreter 3.9 3.10 3.11 3.12 3.13
           sccache: ${{ !startsWith(github.ref, 'refs/tags/') }}
       # Free-threaded Python 3.13t removed - numpy crate doesn't support nogil yet
       - name: Upload wheels
@@ -190,7 +190,7 @@ jobs:
         uses: PyO3/maturin-action@v1
         with:
           target: ${{ matrix.platform.target }}
-          args: --release --out dist --manifest-path bindings/python/Cargo.toml --interpreter 3.8 3.9 3.10 3.11 3.12 3.13
+          args: --release --out dist --manifest-path bindings/python/Cargo.toml --interpreter 3.9 3.10 3.11 3.12 3.13
           sccache: ${{ !startsWith(github.ref, 'refs/tags/') }}
       # Free-threaded Python 3.13t removed - numpy crate doesn't support nogil yet
       - name: Upload wheels
