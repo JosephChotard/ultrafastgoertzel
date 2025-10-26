@@ -30,7 +30,7 @@ dynamic = [
     "description",
     "license",
     "readme",]
-dependencies = ["numpy>=1.20",]
+dependencies = ["numpy>=2.0",]
 
 [project.urls]
 Homepage = 'https://github.com/JosephChotard/ultrafastgoertzel'
