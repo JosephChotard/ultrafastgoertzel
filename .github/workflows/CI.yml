@@ -115,8 +115,8 @@ jobs:
             apk add py3-pip py3-virtualenv
             python3 -m virtualenv .venv
             source .venv/bin/activate
-            pip install ultrafastgoertzel --no-index --find-links dist --force-reinstall
-            pip install pytest numpy
+            pip install pytest numpy>=2.0
+            pip install ultrafastgoertzel --no-index --find-links dist --no-deps --force-reinstall
             pytest bindings/python/tests
       - name: pytest
         if: ${{ !startsWith(matrix.platform.target, 'x86') }}
@@ -131,8 +131,8 @@ jobs:
             set -e
             python3 -m virtualenv .venv
             source .venv/bin/activate
-            pip install pytest numpy
-            pip install ultrafastgoertzel --find-links dist --force-reinstall
+            pip install pytest numpy>=2.0
+            pip install ultrafastgoertzel --no-index --find-links dist --no-deps --force-reinstall
             pytest bindings/python/tests
 
   windows:
