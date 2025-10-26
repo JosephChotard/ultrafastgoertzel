@@ -57,7 +57,7 @@ jobs:
           source .venv/bin/activate
           pip install ultrafastgoertzel --find-links dist --force-reinstall
           pip install pytest numpy
-          cd bindings/python && pytest tests/
+          pytest bindings/python/tests
       - name: pytest
         if: ${{ !startsWith(matrix.platform.target, 'x86') && matrix.platform.target != 'ppc64' }}
         uses: uraimo/run-on-arch-action@v2
@@ -73,7 +73,7 @@ jobs:
             set -e
             pip3 install ultrafastgoertzel --find-links dist --force-reinstall
             pip3 install numpy
-            cd bindings/python && pytest tests/
+            pytest bindings/python/tests
 
   musllinux:
     runs-on: ${{ matrix.platform.runner }}
@@ -117,7 +117,7 @@ jobs:
             source .venv/bin/activate
             pip install ultrafastgoertzel --no-index --find-links dist --force-reinstall
             pip install pytest numpy
-            cd bindings/python && pytest tests/
+            pytest bindings/python/tests
       - name: pytest
         if: ${{ !startsWith(matrix.platform.target, 'x86') }}
         uses: uraimo/run-on-arch-action@v2
@@ -133,7 +133,7 @@ jobs:
             source .venv/bin/activate
             pip install pytest numpy
             pip install ultrafastgoertzel --find-links dist --force-reinstall
-            cd bindings/python && pytest tests/
+            pytest bindings/python/tests
 
   windows:
     runs-on: ${{ matrix.platform.runner }}
@@ -170,7 +170,7 @@ jobs:
           source .venv/Scripts/activate
           pip install ultrafastgoertzel --find-links dist --force-reinstall
           pip install pytest numpy
-          cd bindings/python && pytest tests/
+          pytest bindings/python/tests
 
   macos:
     runs-on: ${{ matrix.platform.runner }}
@@ -205,7 +205,7 @@ jobs:
           source .venv/bin/activate
           pip install ultrafastgoertzel --find-links dist --force-reinstall
           pip install pytest numpy
-          cd bindings/python && pytest tests/
+          pytest bindings/python/tests
 
   sdist:
     runs-on: ubuntu-latest
